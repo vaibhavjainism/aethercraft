@@ -3,7 +3,7 @@ import 'dotenv/config';
 const HF_API_KEY = process.env.HF_API_KEY;
 const MODEL_ID = "sentence-transformers/all-MiniLM-L6-v2";
 
-async function getEmbedding(text) {
+export async function getEmbedding(text) {
   try {
     console.log(`Checking similarity for: "${text}"`);
 

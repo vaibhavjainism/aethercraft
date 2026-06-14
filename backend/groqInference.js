@@ -73,7 +73,7 @@ export async function combine(itemA, itemB) {
           content: `Combine: ${combinationName}`
         }
       ],
-      model: "llama-3.1-8b-instant",
+      model: "openai/gpt-oss-20b",
       temperature: 0.7,
       response_format: { type: "json_object" }
     });
@@ -88,6 +88,6 @@ export async function combine(itemA, itemB) {
 
   } catch (error) {
     console.error("Groq Inference Error:", error.message);
-    return null; 
+    return null;
   }
 }

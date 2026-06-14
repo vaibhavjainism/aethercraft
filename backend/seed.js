@@ -1,42 +1,11 @@
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
 import { generateImage } from './fluxImageGen.js';
+import { getEmbedding } from './similarity.js';
 
 dotenv.config();
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
-const HF_API_KEY = process.env.HF_API_KEY;
-
-async function getEmbedding(text) {
-  try {
-    console.log(`Generating embedding for base element: "${text}"`);
-    const response = await fetch(
-      `https://router.huggingface.co/hf-inference/models/sentence-transformers/all-MiniLM-L6-v2/pipeline/feature-extraction`, 
-      {
-        headers: { 
-            Authorization: `Bearer ${HF_API_KEY}`,
-            "Content-Type": "application/json"
-        },
-        method: "POST",
-        body: JSON.stringify({ inputs: text }),
-      }
-    );
-
-    if (!response.ok) {
-        throw new Error(`HF API Error: ${response.statusText}`);
-    }
-
-    const result = await response.json();
-    let vector = result;
-    if (Array.isArray(result) && Array.isArray(result[0])) {
-        vector = result[0];
-    }
-    return vector;
-  } catch (error) {
-    console.error(`Failed to get embedding for "${text}":`, error.message);
-    return null;
-  }
-}
 
 async function uploadBufferToStorage(buffer, filename) {
   try {
