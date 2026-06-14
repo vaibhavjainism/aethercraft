@@ -1,0 +1,22 @@
+{
+  "name": "aethercraft-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed": "node seed.js"
+  },
+  "keywords": ["ai", "crafting", "game", "groq", "supabase", "flux"],
+  "author": "",
+  "license": "ISC",
+  "description": "AetherCraft backend - AI-powered infinite crafting game API",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.88.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "groq-sdk": "^0.37.0"
+  }
+}
